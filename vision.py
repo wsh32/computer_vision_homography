@@ -15,10 +15,12 @@ lower = (0, 100, 100)
 upper = (80, 255, 255)
 min_detection_area = 300
 
+image_path = "img/IMG_0222.png"
+
 
 if __name__ == '__main__':
     detector = fiducial_detector.ApriltagDetector(tag_families="tag36h11")
-    img = imutils.resize(cv2.imread('img/IMG_0222.png'), width=1200)
+    img = imutils.resize(cv2.imread(image_path), width=1200)
 
     # Find apriltag locations
     tags = detector.detect_tags(img)
@@ -41,7 +43,6 @@ if __name__ == '__main__':
     mask = cv2.inRange(hsv, lower, upper)
     mask = cv2.erode(mask, None, iterations=2)
     mask = cv2.dilate(mask, None, iterations=2)
-    cv2.imshow("mask",mask)
     contours = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL,
                                 cv2.CHAIN_APPROX_SIMPLE)
     contours = imutils.grab_contours(contours)
