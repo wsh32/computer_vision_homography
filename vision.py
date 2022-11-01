@@ -70,5 +70,10 @@ if __name__ == '__main__':
         cv2.putText(img, str(center_world[0:2]), (center[0], center[1] - 15),
             cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1)
 
+    for x in range(0, 501, 50):
+        for y in range(0, 351, 50):
+            x_cam, y_cam, _ = np.dot(inv_homography_matrix, np.array([x, y, 1]))
+            cv2.circle(img, [int(x_cam), int(y_cam)], 2, (255, 0, 255), -1)
+
     cv2.imshow("Annotated img", img)
     cv2.waitKey(0)
