@@ -35,6 +35,8 @@ if __name__ == '__main__':
     # Compute cv2 homography matrix
     homography_matrix, status = cv2.findHomography(np.array(camera_locations),
                                                    np.array(world_locations))
+    inv_homography_matrix, status = cv2.findHomography(np.array(world_locations),
+                                                       np.array(camera_locations))
     print(homography_matrix)
 
     # Find sticky notes
